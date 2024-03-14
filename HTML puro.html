@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calcular diferenca de dias entre datas</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        text-align: center;
+        width: 500px;
+        align-items: center;
+        
+    }
+
+    h1 {
+        color: #333;
+        margin-top: 0;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 10px;
+        text-align: left;
+        
+    }
+
+    input[type="date"] {
+        padding: 8px;
+        width: calc(100% - 18px);
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        text-align: center;
+        
+    }
+
+    button {
+        background-color: #007bff;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+        cursor: pointer;
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+
+    #result {
+    margin-top: 20px;
+    font-size: 18px;
+    display: none;
+    /*background-color: green;*/
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Diferença de Datas</h1>
+        <div id="d1">
+            <label for="date1">Inicio</label>
+            <input type="date" id="date1">
+        </div>
+        <div id="d2">
+            <label for="date2">Fim</label>
+            <input type="date" id="date2">
+        </div>
+        <button id="Calcular" onclick="calculateDifference()">Calcular Diferença</button>
+        <div id="result">
+            <h1 id="Titulo" style="color: #fff;">Titulo</h1>
+            <p1 id="infor">Informação </p1>
+        </div>
+
+    </div>
+<script>
+
+function calculateDifference() {
+    var doc = document.getElementById("result")
+    var tit = document.getElementById("Titulo")
+    var inf = document.getElementById("infor")
+    
+    var date1 = new Date(document.getElementById("date1").value);
+    var date2 = new Date(document.getElementById("date2").value);
+    var tm = 0;
+
+    var diff = Math.abs(date2 - date1);
+    var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    
+    if(days +0 > -1) {
+    tit.innerHTML = "Segue o calculo";
+    inf.innerHTML = "Diferença de " + days + " dias.";
+    doc.style.display = 'block';
+    doc.style.backgroundColor = 'green';
+    tm = 1750;
+    }
+    else{
+        tit.innerHTML = "Por favor, tente novamente!!!";
+        inf.innerHTML = "As informações inseridas estão com alguns erros, por favor verificar";
+        doc.style.display = 'block';
+        doc.style.backgroundColor = 'red';
+        tm = 1150
+    }
+    setTimeout(function() {
+        doc.style.display = "none"
+        }, tm);
+    }
+
+</script>
+</body>
+</html>
